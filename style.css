@@ -1,0 +1,327 @@
+/* 1. Fondo Animado: Niebla de Sangre y Honor */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0d0d0d; /* Negro profundo */
+    overflow: hidden;
+    font-family: 'Georgia', serif;
+    /* Creamos una animación de degradado que se mueve */
+    background: radial-gradient(circle at 50% 150%, #630000 0%, #0d0d0d 100%);
+}
+
+/* 2. El Contenedor con la animación de niebla */
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    padding: 40px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* EFECTO DE MOVIMIENTO: Niebla flotante */
+.contenedor::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        rgba(255, 0, 0, 0.03) 50%,
+        transparent 100%
+    );
+    background-size: 100% 400%;
+    animation: moverNiebla 10s linear infinite;
+    z-index: -1;
+}
+
+@keyframes moverNiebla {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 0% 100%; }
+}
+
+/* 3. Título Estilo Caligrafía */
+h2 {
+    color: #fff;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    margin-top: 0;
+    margin-bottom: auto;
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+    border-left: 5px solid #bc002d;
+    padding-left: 15px;
+}
+
+/* 4. La Imagen con marco de "Armadura Samurai" */
+.imagen-regalo {
+    max-width: 300px;
+    height: auto;
+    border: 2px solid #bc002d;
+    padding: 5px;
+    background-color: #000;
+    box-shadow: 0 0 30px rgba(188, 0, 45, 0.4);
+    margin-top: auto;
+    margin-bottom: 40px;
+    /* Un ligero pulso de luz */
+    animation: pulsoImagen 3s ease-in-out infinite;
+}
+
+@keyframes pulsoImagen {
+    0%, 100% { box-shadow: 0 0 20px rgba(188, 0, 45, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(188, 0, 45, 0.6); }
+}
+
+/* 5. El Botón "Corte de Katana" */
+.boton-regalo {
+    all: unset;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 4px;
+    padding: 15px 60px;
+    cursor: pointer;
+    text-transform: uppercase;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    margin-bottom: auto;
+    transition: 0.3s;
+}
+
+/* El "brillo" del corte de espada al pasar el mouse */
+.boton-regalo::after {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: 0.5s;
+}
+
+.boton-regalo:hover {
+    background: #bc002d;
+    border-color: #bc002d;
+    box-shadow: 0 0 20px #bc002d;
+}
+
+.boton-regalo:hover::after {
+    left: 100%;
+}
+/* Clase para las escenas */
+.escena {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Clase para ocultar suavemente */
+.oculto {
+    opacity: 0;
+    pointer-events: none; /* Evita que se pueda hacer clic mientras desaparece */
+    transform: scale(0.9); /* Se encoge un poco al irse */
+    transition: all 0.5s ease;
+}
+
+/* Clase para mostrar suavemente */
+.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1); /* Vuelve a su tamaño original */
+    transition: all 0.5s ease;
+}
+
+/* Ajuste inicial para los contenedores */
+.contenedor {
+    transition: all 0.5s ease;
+}
+
+/* Centrado total de la pantalla de regalo */
+#pantalla-regalo {
+    display: none; /* Se activa con JS */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centra verticalmente */
+    height: 100vh;
+}
+
+/* Contenedor del sobre más realista */
+.sobre-wrapper {
+    position: relative;
+    width: 350px;
+    height: 230px;
+    background-color: #d2b48c; /* Color papel kraft */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.sobre-wrapper:hover {
+    transform: scale(1.02) translateY(-5px);
+}
+
+/* Cuerpo del sobre con sombras de pliegue */
+.sobre {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #e3c6a1 0%, #c1a37a 100%);
+    z-index: 2;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 50% 50%); /* Simula pliegues */
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Solapa realista */
+.solapa {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #d2b48c;
+    clip-path: polygon(0 0, 100% 0, 50% 55%);
+    z-index: 4;
+    transform-origin: top;
+    transition: transform 0.6s ease-in-out;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Corazón con brillo sutil */
+.corazon {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 45px;
+    color: #bc002d;
+    z-index: 5;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    transition: all 0.4s ease;
+}
+
+/* Papel de la carta (Textura de papel) */
+.papel {
+    position: absolute;
+    /* La anclamos arriba del sobre */
+    top: 0; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 150px; /* Altura inicial */
+    background: #fff;
+    background-image: linear-gradient(#e8e8e8 1px, transparent 1px);
+    background-size: 100% 28px;
+    padding: 35px 25px;
+    box-sizing: border-box;
+    z-index: 1;
+    overflow: hidden;
+    
+    /* Transiciones: la altura crece suavemente hacia abajo */
+    transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275), height 0.4s ease-out;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+#texto-mensaje {
+    font-family: 'Dancing Script', cursive, serif; /* Fuente tipo carta */
+    color: #333;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* --- CLASES DE ACTIVACIÓN --- */
+.sobre-abierto .solapa {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+.sobre-abierto .papel {
+    /* Sube 250px y se queda fija en ese punto */
+    transform: translate(-50%, -280px); 
+    z-index: 3;
+    min-height: 200px;
+}
+
+.sobre-abierto .corazon {
+    opacity: 0;
+    transform: translate(-50%, -100px) scale(1.5);
+}
+.instruccion-carta {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Georgia', serif;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 30px; /* Espacio antes de la carta */
+    text-shadow: 0 0 10px rgba(188, 0, 45, 0.5);
+    
+    /* Animación de parpadeo suave */
+    animation: pulsoTexto 2s infinite ease-in-out;
+}
+
+@keyframes pulsoTexto {
+    0%, 100% { opacity: 0.4; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-5px); }
+}
+
+/* Ocultar la instrucción cuando la carta ya se abrió */
+.sobre-abierto + .boton-regalo, /* Referencia si necesitas mover algo */
+.sobre-abierto ~ .instruccion-carta {
+    display: none; 
+}
+/* Contenedor lateral derecho */
+.lateral-final {
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none; /* Se activa por JS */
+    flex-direction: column;
+    align-items: center;
+    z-index: 100; /* Por encima de todo */
+}
+/* El pequeño texto sobre el botón */
+.mini-texto {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 120px; /* Para que el texto se ajuste en dos líneas */
+    text-align: center;
+    font-family: 'Georgia', serif;
+}
+
+/* Estilo de botón pequeño tipo "Sello" */
+.boton-samurai-pequeno {
+    all: unset;
+    background: transparent;
+    color: #bc002d;
+    border: 1px solid #bc002d;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s;
+    box-shadow: 0 0 10px rgba(188, 0, 45, 0.2);
+}
+
+.boton-samurai-pequeno:hover {
+    background: #bc002d;
+    color: white;
+    box-shadow: 0 0 20px #bc002d;
+}
+
+/* Animación de entrada */
+@keyframes fadeInDerecha {
+    from { opacity: 0; transform: translateY(-50%) translateX(20px); }
+    to { opacity: 1; transform: translateY(-50%) translateX(0); }
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regalo 14 de Febrero</title>
+    <link rel="stylesheet" href="Css/Style.css">
+</head>
+<body>
+    <div class="audio-player">
+    <p class="audio-label">Mensaje de texto</p>
+    <audio id="bg-music" loop>
+        <source src="Assets/Big Soto - Mensaje de texto   The Good Trip.mp3">
+    </audio>
+    <button id="music-control" class="btn-audio">🎵 Play Music</button>
+</div>
+    </div>
+
+    <div id="pantalla-inicio" class="contenedor">
+        <h2>Feliz San Valentín!</h2>
+        <img src="regalo.jpg" alt="San Valentin" class="imagen-regalo">
+        <button class="boton-regalo" onclick="mostrarRegalo()">Abrir Regalo</button>
+    </div>
+
+    <div id="pantalla-regalo" class="contenedor oculto" style="display: none;">
+    <p class="instruccion-carta">Corta el sello para leer...</p>
+    
+    <div id="contenedor-lateral-derecho" class="lateral-final" style="display: none;">
+        <p class="mini-texto">Presionar al terminar de leer la carta</p>
+        <button class="boton-samurai-pequeno" onclick="accionFinal()">Continuar</button>
+    </div>
+
+    <div class="sobre-wrapper" onclick="abrirCarta()">
+        <div class="sobre">
+            <div class="solapa"></div>
+            <div class="cuerpo"></div>
+            <div class="corazon">❤</div>
+        </div>
+        <div class="papel" id="papel-mensaje">
+            <p id="texto-mensaje"></p>
+        </div>
+    </div>
+    
+    <script src="js/Script.js"></script>
+</body>
+</html>
